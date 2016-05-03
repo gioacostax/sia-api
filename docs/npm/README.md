@@ -1,3 +1,27 @@
+# SIAJS
+
+Javascript library for requests academic information from National University of Colombia.
+
+## How it works?
+
+Basically the library connects to the REST API from SIA University and transforms the data into readable objects.
+
+## Install
+
+``` shell
+$ npm install --save siajs
+```
+
+``` javascript
+const sia = require('siajs');
+```
+
+## Usage
+
+[https://github.com/siajs/sia](https://github.com/siajs/sia)
+
+## License
+
 The MIT License (MIT)
 
 Copyright (c) 2015 - Giorgio Acosta
