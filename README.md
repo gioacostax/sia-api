@@ -1,4 +1,5 @@
 # SIAJS
+[![Build Status](https://travis-ci.org/siajs/sia.svg?branch=master)](https://travis-ci.org/siajs/sia)
 
 Javascript library for requests academic information from National University of Colombia.
 
