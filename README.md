@@ -11,7 +11,7 @@ Basically the library connects to the REST API from SIA University and transform
 
 #### Bower
 
-[https://github.com/siajs/sia-bower](https://github.com/siajs/sia-bowerhttps://github.com/siajs/sia-bower)
+[https://github.com/siajs/sia-bower](https://github.com/siajs/sia-bower)
 
 #### NPM
 
