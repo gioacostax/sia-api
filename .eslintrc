@@ -1,15 +1,20 @@
 {
-  "parser": "babel-eslint",
-
   "env": {
     "browser": true,
     "node": true
   },
 
-  "extends": "airbnb/base",
+  "globals": {
+    "Promise": true
+  },
+
+  "extends": "gio",
 
   "rules": {
-    "comma-dangle": ["off"],
-    "arrow-body-style": ["off"]
+    "comma-dangle": 0,
+    "arrow-body-style": 0,
+    "max-nested-callbacks": 0,
+    "max-depth": 0,
+    "no-underscore-dangle": 0
   }
 }
