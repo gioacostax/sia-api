@@ -3,13 +3,9 @@
 *
 * This is a Cross Library for Web and Nodejs, nodejs needs a extra library
 */
-let fetch = null;
 
-if (typeof window === 'undefined') {
-  fetch = require('node-fetch');
-} else {
-  fetch = window.fetch;
-}
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 const Group = require('./_group');
 const Subject = require('./_subject');
