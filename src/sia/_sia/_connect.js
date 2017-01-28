@@ -1,7 +1,17 @@
 /**
+ * sia-js
+ *
+ * Copyright © 2015-2017 gioacostax. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
 * Necessary modules
 *
-* This is a Cross Library for Web and Nodejs, nodejs needs a extra library
+* This is a Cross Library for Web and Nodejs,
+* nodejs needs a extra library and older browsers too
 */
 
 require('es6-promise').polyfill();
@@ -22,21 +32,28 @@ const JSON_S_SUBJECT = 'asignaturas';
 const JSON_S_COUNT = 'totalAsignaturas';
 const JSON_S_PAGS = 'numPaginas';
 
-/**
-* Get groups from a POST request
-*
-* @param  {String} url          Site URL
-* @param  {String} params       Query POST params
-* @param  {Function} callback   Callback
-* @return {Function} callback
-*/
-exports.getGroups = (url, params, callback) => {
+exports.getGroups = (host, params, { eco, id = 'default' } = {}, callback) => {
   const query = `{ method: ${JSON_G_GET}, params: ${params} }`;
 
-  fetch(`http://${url}${JSON_URL}`, { method: 'POST', body: query }).then(res => {
+  let url = `${host}${JSON_URL}`;
+  let config = {
+    method: 'POST',
+    body: query
+  };
+
+  if (eco) {
+    url = eco;
+    config = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, host, query })
+    };
+  }
+
+  fetch(`http://${url}`, config).then(res => {
     res.json().then(json => {
       if (json.error) {
-        return callback(json.error, null);
+        return callback(null, json.error);
       }
       const groups = [];
 
@@ -44,26 +61,33 @@ exports.getGroups = (url, params, callback) => {
         groups.push(new Group(json[JSON_RESULT][JSON_LIST][x]));
       }
 
-      return callback(null, groups);
-    }).catch(err => callback(err, null));
-  }).catch(err => callback(err, null));
+      return callback(groups, null);
+    }).catch(err => callback(null, err));
+  }).catch(err => callback(null, err));
 };
 
-/**
-* Get subjects from a POST request
-*
-* @param  {String} url          Site URL
-* @param  {String} params       Query POST params
-* @param  {Function} callback   Callback
-* @return {Function} callback
-*/
-exports.getSubjects = (url, params, callback) => {
+exports.getSubjects = (host, params, { eco, id = 'default' } = {}, callback) => {
   const query = `{ method: ${JSON_S_GET}, params: ${params} }`;
 
-  fetch(`http://${url}${JSON_URL}`, { method: 'POST', body: query }).then(res => {
+  let url = `${host}${JSON_URL}`;
+  let config = {
+    method: 'POST',
+    body: query
+  };
+
+  if (eco) {
+    url = eco;
+    config = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, host, query })
+    };
+  }
+
+  fetch(`http://${url}`, config).then(res => {
     res.json().then(json => {
       if (json.error) {
-        return callback(json.error, null);
+        return callback(null, json.error);
       }
       const subjects = [];
       const count = json[JSON_RESULT][JSON_S_COUNT];
@@ -73,7 +97,7 @@ exports.getSubjects = (url, params, callback) => {
         subjects.push(new Subject(json[JSON_RESULT][JSON_S_SUBJECT][JSON_LIST][x]));
       }
 
-      return callback(null, { count, pags, list: subjects });
-    }).catch(err => callback(err, null));
-  }).catch(err => callback(err, null));
+      return callback({ count, pags, list: subjects }, null);
+    }).catch(err => callback(null, err));
+  }).catch(err => callback(null, err));
 };
