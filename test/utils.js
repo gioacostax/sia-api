@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 /* eslint no-unused-expressions: 0 */
 
-const sia = require('../src/sia');
+const sia = require('../src');
 const expect = require('chai').expect;
 
 describe('UTILS', () => {
