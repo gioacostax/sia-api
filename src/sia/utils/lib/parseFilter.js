@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Parse filter: ['L10', 'M10', 'M11', 'M12' ...] to param: 'L:M10-13,14-17:C:J10-13,14-17:V:S:D'
  *

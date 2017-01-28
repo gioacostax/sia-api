@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * Compare two filters, if first is on second go next, else return false.

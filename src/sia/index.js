@@ -1,10 +1,9 @@
-'use strict';
-
 /**
 * Necessary modules
 *
 * This is a Cross Library for Web and Nodejs, nodejs needs a extra library
 */
+
 const com = require('./_sia/_connect');
 const _utils = require('./utils');
 
