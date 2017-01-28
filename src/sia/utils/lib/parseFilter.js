@@ -30,7 +30,7 @@ module.exports = filter => {
             onFrame = true;
             frame.push(y);
           } else if (onFrame) {
-            total.push(`${frame[0]}-${parseInt(frame[frame.length - 1], 10) + 1}`);
+            total.push(`${frame[0]}-${parseInt(frame[frame.length - 1]) + 1}`);
             frame = [];
             onFrame = false;
           }

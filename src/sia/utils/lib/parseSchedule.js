@@ -42,8 +42,8 @@ module.exports = day => {
       if (day[x]) {
         for (let y = 0; y < day[x].hour.length; y++) {
           const frame = day[x].hour[y].split('-');
-          const from = parseInt(frame[0], 10);
-          const to = parseInt(frame[1], 10);
+          const from = parseInt(frame[0]);
+          const to = parseInt(frame[1]);
 
           const tmp = [];
 
