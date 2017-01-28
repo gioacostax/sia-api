@@ -1,3 +1,11 @@
+/**
+ * sia-js
+ *
+ * Copyright © 2015-2017 gioacostax. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
 /**
  * Parse Group.Schedule to ['L10', 'M10', 'M11', 'M12' ...]
@@ -55,6 +63,7 @@ module.exports = day => {
         }
       }
     }
+
     return res;
   } catch (err) {
     return null;
