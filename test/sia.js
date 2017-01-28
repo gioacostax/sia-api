@@ -10,7 +10,7 @@ describe('SIA', function callback() {
 
   describe('.getSubjects()', () => {
     it('Values', done => {
-      sia.getSubjects('foto', 'sia.bogota.unal.edu.co').then(res => {
+      sia.getSubjects('foto').then(res => {
         expect(res).to.not.be.empty;
         expect(res.list[0]).to.have.property('code');
         expect(res.list[0]).to.have.property('name');
@@ -23,7 +23,7 @@ describe('SIA', function callback() {
     let resGroups = [];
 
     before(done => {
-      sia.getGroups(2018484, 'sia.bogota.unal.edu.co').then(res => {
+      sia.getGroups(2018484).then(res => {
         resGroups = res;
         done();
       });
