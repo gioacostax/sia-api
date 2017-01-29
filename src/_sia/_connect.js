@@ -52,7 +52,7 @@ exports.getGroups = (host, params, { eco, id = 'default' } = {}, callback) => {
     };
   }
 
-  fetch(`http://${url}`, config).then(res => {
+  fetch(url, config).then(res => {
     res.json().then(json => {
       if (json.error) {
         return callback(null, json.error);
@@ -86,7 +86,7 @@ exports.getSubjects = (host, params, { eco, id = 'default' } = {}, callback) => 
     };
   }
 
-  fetch(`http://${url}`, config).then(res => {
+  fetch(url, config).then(res => {
     res.json().then(json => {
       if (json.error) {
         return callback(null, json.error);

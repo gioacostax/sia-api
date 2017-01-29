@@ -10,7 +10,7 @@ describe('SIA-ECO', function callback() {
 
   describe('.getSubjects()', () => {
     it('Values', done => {
-      sia.getSubjects('foto', { eco: 'sia-eco.herokuapp.com', id: 'test' }).then(res => {
+      sia.getSubjects('foto', { eco: 'https://sia-eco.herokuapp.com', id: 'test' }).then(res => {
         expect(res).to.not.be.empty;
         expect(res.list[0]).to.have.property('code');
         expect(res.list[0]).to.have.property('name');
@@ -23,7 +23,7 @@ describe('SIA-ECO', function callback() {
     let resGroups = [];
 
     before(done => {
-      sia.getGroups(2018484, { eco: 'sia-eco.herokuapp.com', id: 'test' }).then(res => {
+      sia.getGroups(2018484, { eco: 'https://sia-eco.herokuapp.com', id: 'test' }).then(res => {
         resGroups = res;
         done();
       });
