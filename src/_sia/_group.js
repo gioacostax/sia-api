@@ -1,3 +1,14 @@
+'use strict';
+
+/**
+ * sia-api
+ *
+ * Copyright © 2015-2018 gioacostax. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * RAW JSON Example
  *
@@ -46,14 +57,15 @@ const JSON_G_PL_LIST = 'list';
 const JSON_G_PL_PLAN = 'plan';
 const JSON_G_PL_TYPE = 'tipo_limitacion';
 
-const JSON_G_S_DAYS = ['lunes',
-                       'martes',
-                       'miercoles',
-                       'jueves',
-                       'viernes',
-                       'sabado',
-                       'domingo'
-                      ];
+const JSON_G_S_DAYS = [
+  'lunes',
+  'martes',
+  'miercoles',
+  'jueves',
+  'viernes',
+  'sabado',
+  'domingo'
+];
 const JSON_G_S_PLACE = 'aula_';
 const JSON_G_S_HOUR = 'horario_';
 

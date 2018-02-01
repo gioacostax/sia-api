@@ -1,0 +1,9 @@
+test
+.editorconfig
+.eslintignore
+.eslintrc
+.gitignore
+.travis.yml
+.npmignore
+demo.js
+.DS_Store

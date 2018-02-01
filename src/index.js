@@ -1,9 +1,17 @@
+'use strict';
+
+/**
+ * sia-api
+ *
+ * Copyright © 2015-2018 gioacostax. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /**
 * Necessary modules
-*
-* This is a Cross Library for Web and Nodejs, nodejs needs a extra library
 */
-
 const com = require('./_sia/_connect');
 const _utils = require('./utils');
 
@@ -54,13 +62,17 @@ exports.TYPE = {
 * Get Groups
 *
 * @param  {Number} code         Code of subject
-* @param  {String} url          Site URL
+* @param  {Object} host         { host = 'http://sia.bogota.unal.edu.co', eco, id }
 * @param  {Object} options      { plan, filter} (Optional)
-* @return  {Function} Promise   (then and catch)
+* @return  {Function} Promise
 */
-exports.getGroups = (code, url, { plan = null, filter = [] } = {}) => {
+exports.getGroups = (
+  code,
+  { host = 'http://sia.bogota.unal.edu.co', eco, id } = {},
+  { plan = null, filter = [] } = {}
+) => {
   return new Promise((resolve, reject) => {
-    com.getGroups(url, `[${code} , 0]`, (err, res) => {
+    com.getGroups(host, `[${code} , 0]`, { eco, id }, (res, err) => {
       if (!err) {
         const planFilter = [];
 
@@ -99,7 +111,7 @@ exports.getGroups = (code, url, { plan = null, filter = [] } = {}) => {
         }
         resolve(res);
       }
-      reject(err);
+      reject({ error: { name: err.name, code: err.code, message: err.message } });
     });
   });
 };
@@ -107,38 +119,37 @@ exports.getGroups = (code, url, { plan = null, filter = [] } = {}) => {
 /**
  * Get subjects
  *
- * @param  {String} search      Partial name of subject
- * @param  {String} url         Site URL
+ * @param  {String} search     Search key
+ * @param  {Object} host        { host = 'http://sia.bogota.unal.edu.co', eco, id }
  * @param  {Object} options     { filter, level, type, plan, noPag, noRes} (Optional)
- * @return {Function} Promise   (then and catch)
+ * @return {Function} Promise
  */
 exports.getSubjects = (
   search,
-  url,
+  { host = 'http://sia.bogota.unal.edu.co', eco, id } = {},
   { filter = [], level = '', type = '', plan = '', noPag = 1, noRes = 15 } = {}
 ) => {
   return new Promise((resolve, reject) => {
     try {
-      const filtex = filter.length ? _utils.parseFilter(filter) : '';
       const params = `[
         '${search}',
         '${level}',
         '${type}',
         '${level}',
         '${plan}',
-        '${filtex}',
+        '${filter.length ? _utils.parseFilter(filter) : ''}',
         ${noPag},
         ${noRes}
       ]`;
 
-      com.getSubjects(url, params, (err, res) => {
+      com.getSubjects(host, params, { eco, id }, (res, err) => {
         if (!err) {
           resolve(res);
         }
-        reject(err);
+        reject({ error: { name: err.name, code: err.code, message: err.message } });
       });
     } catch (err) {
-      reject(err);
+      reject({ error: { name: err.name, code: err.code, message: err.message } });
     }
   });
 };
