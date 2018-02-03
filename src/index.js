@@ -15,6 +15,8 @@
 const com = require('./_sia/_connect');
 const _utils = require('./utils');
 
+const defaultURL = 'https://siabog1.unal.edu.co';
+
 exports.utils = _utils;
 
 /**
@@ -62,13 +64,13 @@ exports.TYPE = {
 * Get Groups
 *
 * @param  {Number} code         Code of subject
-* @param  {Object} host         { host = 'http://sia.bogota.unal.edu.co', eco, id }
+* @param  {Object} host         { host = defaultURL, eco, id }
 * @param  {Object} options      { plan, filter} (Optional)
 * @return  {Function} Promise
 */
 exports.getGroups = (
   code,
-  { host = 'http://sia.bogota.unal.edu.co', eco, id } = {},
+  { host = defaultURL, eco, id } = {},
   { plan = null, filter = [] } = {}
 ) => {
   return new Promise((resolve, reject) => {
@@ -120,13 +122,13 @@ exports.getGroups = (
  * Get subjects
  *
  * @param  {String} search     Search key
- * @param  {Object} host        { host = 'http://sia.bogota.unal.edu.co', eco, id }
+ * @param  {Object} host        { host = defaultURL, eco, id }
  * @param  {Object} options     { filter, level, type, plan, noPag, noRes} (Optional)
  * @return {Function} Promise
  */
 exports.getSubjects = (
   search,
-  { host = 'http://sia.bogota.unal.edu.co', eco, id } = {},
+  { host = defaultURL, eco, id } = {},
   { filter = [], level = '', type = '', plan = '', noPag = 1, noRes = 15 } = {}
 ) => {
   return new Promise((resolve, reject) => {
