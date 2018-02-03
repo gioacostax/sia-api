@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * sia-api
+ * SIA-API
  *
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
@@ -9,10 +9,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const parseFilter = require('./lib/parseFilter');
-const parseParam = require('./lib/parseParam');
+const parseFilter   = require('./lib/parseFilter');
+const parseParam    = require('./lib/parseParam');
 const parseSchedule = require('./lib/parseSchedule');
-const validFilter = require('./lib/validFilter');
+const validFilter   = require('./lib/validFilter');
 
 module.exports = {
   parseFilter,

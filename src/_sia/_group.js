@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * sia-api
+ * SIA-API
  *
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
@@ -46,18 +46,20 @@
  * }
  */
 
-const JSON_G_CODE = 'codigo';
-const JSON_G_MASTER = 'nombredocente';
-const JSON_G_USER = 'usuariodocente';
-const JSON_G_LIMITS = 'planlimitacion';
-const JSON_G_QUOTA = 'cupostotal';
-const JSON_G_FREE = 'cuposdisponibles';
+const JSON_G_CODE     = 'codigo';
+const JSON_G_MASTER   = 'nombredocente';
+const JSON_G_USER     = 'usuariodocente';
+const JSON_G_LIMITS   = 'planlimitacion';
+const JSON_G_QUOTA    = 'cupostotal';
+const JSON_G_FREE     = 'cuposdisponibles';
 
-const JSON_G_PL_LIST = 'list';
-const JSON_G_PL_PLAN = 'plan';
-const JSON_G_PL_TYPE = 'tipo_limitacion';
+const JSON_G_PL_LIST  = 'list';
+const JSON_G_PL_PLAN  = 'plan';
+const JSON_G_PL_TYPE  = 'tipo_limitacion';
 
-const JSON_G_S_DAYS = [
+const JSON_G_S_PLACE  = 'aula_';
+const JSON_G_S_HOUR   = 'horario_';
+const JSON_G_S_DAYS   = [
   'lunes',
   'martes',
   'miercoles',
@@ -66,21 +68,19 @@ const JSON_G_S_DAYS = [
   'sabado',
   'domingo'
 ];
-const JSON_G_S_PLACE = 'aula_';
-const JSON_G_S_HOUR = 'horario_';
 
 /**
  * Group Class
  */
 module.exports = class Group {
   constructor(json) {
-    this.code = json[JSON_G_CODE];
-    this.master = json[JSON_G_MASTER];
-    this.user = json[JSON_G_USER];
+    this.code     = json[JSON_G_CODE] || 0;
+    this.master   = json[JSON_G_MASTER] || '[NO DISPONIBLE]';
+    this.user     = json[JSON_G_USER] || '-';
+    this.quota    = json[JSON_G_QUOTA] || 0;
+    this.free     = json[JSON_G_FREE] || 0;
+    this.limits   = json[JSON_G_LIMITS] ? this.parseLimits(json[JSON_G_LIMITS]) : [];
     this.schedule = this.parseSchedule(json);
-    this.limits = this.parseLimits(json[JSON_G_LIMITS]);
-    this.quota = json[JSON_G_QUOTA];
-    this.free = json[JSON_G_FREE];
   }
 
   parseLimits(json) {

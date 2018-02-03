@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * sia-api
+ * SIA-API
  *
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
@@ -19,21 +19,21 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-const Group = require('./_group');
+const Group   = require('./_group');
 const Subject = require('./_subject');
-const https = require('https'); // Test as module browser
+const https   = require('https');
 
 /**
 * Tags
 */
-const JSON_URL = '/buscador/JSON-RPC';
-const JSON_RESULT = 'result';
-const JSON_LIST = 'list';
-const JSON_G_GET = 'buscador.obtenerGruposAsignaturas';
-const JSON_S_GET = 'buscador.obtenerAsignaturas';
-const JSON_S_SUBJECT = 'asignaturas';
-const JSON_S_COUNT = 'totalAsignaturas';
-const JSON_S_PAGS = 'numPaginas';
+const JSON_URL        = '/buscador/JSON-RPC';
+const JSON_RESULT     = 'result';
+const JSON_LIST       = 'list';
+const JSON_G_GET      = 'buscador.obtenerGruposAsignaturas';
+const JSON_S_GET      = 'buscador.obtenerAsignaturas';
+const JSON_S_SUBJECT  = 'asignaturas';
+const JSON_S_COUNT    = 'totalAsignaturas';
+const JSON_S_PAGS     = 'numPaginas';
 
 /* Avoid SSL */
 const agent = new https.Agent({

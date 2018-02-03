@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * sia-api
+ * SIA-API
  *
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
