@@ -17,6 +17,7 @@
     "max-nested-callbacks": 0,
     "max-depth": 0,
     "no-underscore-dangle": 0,
-    "id-length": 0
+    "id-length": 0,
+    "no-multi-spaces": 0
   }
 }
