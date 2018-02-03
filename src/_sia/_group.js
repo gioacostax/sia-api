@@ -101,11 +101,15 @@ module.exports = class Group {
 
     for (let x = 0; x < JSON_G_S_DAYS.length; x++) {
       // Some have more than one place and hour, these are separated with a space
-      const place = json[JSON_G_S_PLACE + JSON_G_S_DAYS[x]].split(' ');
-      const hour = json[JSON_G_S_HOUR + JSON_G_S_DAYS[x]].split(' ');
+      const place = json[JSON_G_S_PLACE + JSON_G_S_DAYS[x]]
+        ? json[JSON_G_S_PLACE + JSON_G_S_DAYS[x]].split(' ')
+        : ['--'];
+      const hour = json[JSON_G_S_HOUR + JSON_G_S_DAYS[x]]
+        ? json[JSON_G_S_HOUR + JSON_G_S_DAYS[x]].split(' ')
+        : ['--'];
 
       // If no place or hour, the day gonna be null
-      if (place[0] === '--' || hour[0] === '--') {
+      if (hour[0] === '--') {
         hours.push(null);
       } else {
         hours.push({
