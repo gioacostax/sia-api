@@ -35,20 +35,17 @@ const JSON_S_SUBJECT = 'asignaturas';
 const JSON_S_COUNT = 'totalAsignaturas';
 const JSON_S_PAGS = 'numPaginas';
 
+/* Avoid SSL */
+const agent = new https.Agent({
+  rejectUnauthorized: false
+});
+
 exports.getGroups = (host, params, { eco, id = 'default' } = {}, callback) => {
   const query = `{ method: ${JSON_G_GET}, params: ${params} }`;
 
-  /* Avoid SSL */  
-  let agent = undefined;
-  if (host.substring(0, 5) === 'https') {
-    agent = new https.Agent({
-      rejectUnauthorized: false
-    })
-  }
-
   let url = `${host}${JSON_URL}`;
   let config = {
-    agent,
+    agent: host.substring(0, 5) === 'https' ? agent : false,
     method: 'POST',
     body: query
   };
@@ -56,10 +53,9 @@ exports.getGroups = (host, params, { eco, id = 'default' } = {}, callback) => {
   if (eco) {
     url = eco;
     config = {
-      agent,
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, host, query })
+      body: JSON.stringify({ id, host: `${host}${JSON_URL}`, query })
     };
   }
 
@@ -82,28 +78,19 @@ exports.getGroups = (host, params, { eco, id = 'default' } = {}, callback) => {
 exports.getSubjects = (host, params, { eco, id = 'default' } = {}, callback) => {
   const query = `{ method: ${JSON_S_GET}, params: ${params} }`;
 
-  /* Avoid SSL */  
-  let agent = undefined;
-  if (host.substring(0, 5) === 'https') {
-    agent = new https.Agent({
-      rejectUnauthorized: false
-    })
-  }
-
   let url = `${host}${JSON_URL}`;
   let config = {
-    agent,
+    agent: host.substring(0, 5) === 'https' ? agent : false,
     method: 'POST',
     body: query
   };
 
   if (eco) {
-    agent,
     url = eco;
     config = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, host, query })
+      body: JSON.stringify({ id, host: `${host}${JSON_URL}`, query })
     };
   }
 
