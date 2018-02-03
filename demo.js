@@ -1,11 +1,11 @@
 const sia = require('./src');
 
 sia.getGroups(
-  4100896,
-  { 
+  35945,
+  {
     host: 'https://siaman.unal.edu.co',
-    //eco: 'https://sia-eco.herokuapp.com',
-    //id: 'sia-js-demo'
+    eco: 'https://sia-eco.herokuapp.com',
+    id: 'sia-api-demo'
   }
 ).then(res => {
   console.log(res);
