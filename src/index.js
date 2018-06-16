@@ -15,7 +15,7 @@
 const com = require('./_sia/_connect');
 const _utils = require('./utils');
 
-const defaultURL = 'https://siabog1.unal.edu.co';
+const defaultURL = 'https://siabog.unal.edu.co';
 
 exports.utils = _utils;
 
