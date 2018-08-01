@@ -100,7 +100,11 @@ module.exports = class Group {
     const hours = [];
 
     for (let x = 0; x < JSON_G_S_DAYS.length; x++) {
-      // Some have more than one place and hour, these are separated with a space
+      /*
+       * Dentro del formato original existen horas y lugares separados por
+       * un espacio (' '), si la hora o el lugar contienen '--' en su formato
+       * original, este será transformado de la misma manera al formato personalizado.
+       */
       const place = json[JSON_G_S_PLACE + JSON_G_S_DAYS[x]]
         ? json[JSON_G_S_PLACE + JSON_G_S_DAYS[x]].split(' ')
         : ['--'];
@@ -108,7 +112,11 @@ module.exports = class Group {
         ? json[JSON_G_S_HOUR + JSON_G_S_DAYS[x]].split(' ')
         : ['--'];
 
-      // If no place or hour, the day gonna be null
+      /*
+       * Si no hay clase en un día se establece que sea null,
+       * de esta manera siempre habrá un arreglo final de un tamaño
+       * de 7 elementos, que representan cada uno de los días de la semana.
+       */
       if (hour[0] === '--') {
         hours.push(null);
       } else {
@@ -118,6 +126,19 @@ module.exports = class Group {
         });
       }
     }
+
+    /*
+     * El resultado será un arreglo con un formato similar a:
+     * [
+     *   null,
+     *   { place: ['--', '--'], hour: ['7-10', '18-20'] },
+     *   null,
+     *   { place: ['217-302'], hour: ['7-10'] },
+     *   null,
+     *   null,
+     *   null
+     * ]
+     */
 
     return hours;
   }

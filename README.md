@@ -1,6 +1,6 @@
 # SIA-API
 
-## v3.0.0
+## v4.0.0
 
 [![Build Status](https://travis-ci.org/gioacostax/sia-js.svg?branch=v2.0.0)](https://travis-ci.org/gioacostax/sia-js)
 
@@ -100,5 +100,3 @@ __get options:__ optional object to filter groups.
 
 ----------
 #### License MIT
-
-<sub><i>Keywords: sia, siajs, unal, universidad, nacional, colombia, subjects, prometeo, sia-eco</sub></i>

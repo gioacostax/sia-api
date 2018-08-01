@@ -1,25 +1,31 @@
 {
   "name": "siajs",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "SIA-API - National University of Colombia",
   "author": "Giorgio Acosta",
   "license": "MIT",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:jest": "jest --watch"
   },
   "main": "src/index.js",
   "dependencies": {
-    "es6-promise": "^4.0.5",
+    "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
-    "eslint": "^3.1.0",
-    "eslint-config-gio": "^1.0.0",
-    "mocha": "^3.2.0"
+    "chai": "^4.1.2",
+    "eslint": "^5.2.0",
+    "eslint-config-gio": "^1.2.5",
+    "jest": "^23.4.2",
+    "mocha": "^5.2.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gioacostax/sia-com.git"
+    "url": "https://github.com/gioacostax/sia-api.git"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testURL": "http://localhost"
   }
 }

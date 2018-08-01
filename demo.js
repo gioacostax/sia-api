@@ -1,14 +1,7 @@
 const sia = require('./src');
 
-sia.getGroups(
-  35945,
-  {
-    host: 'https://siaman.unal.edu.co',
-    eco: 'https://sia-eco.herokuapp.com',
-    id: 'sia-api-demo'
-  }
-).then(res => {
-  console.log(res);
+sia.getGroups(14484).then(res => {
+  console.log(res[0].schedule);
 }, err => {
   console.log(err);
 });

@@ -1,8 +1,6 @@
 'use strict';
 
 /**
- * SIA-API
- *
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
@@ -13,7 +11,7 @@
 * Necessary modules
 *
 * This is a Cross Library for Web and Nodejs,
-* nodejs needs a extra library and older browsers too
+* nodejs needs a extra library and older browsers as well.
 */
 
 require('es6-promise').polyfill();

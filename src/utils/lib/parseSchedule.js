@@ -1,8 +1,6 @@
 'use strict';
 
 /**
- * SIA-API
- *
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
@@ -10,16 +8,16 @@
  */
 
 /**
- * Parse Group.Schedule to ['L10', 'M10', 'M11', 'M12' ...]
+ * Parse array 'Group.Schedule' to ['L10', 'M10', 'M11', 'M12' ...]
  *
- * @param  {Array} day      List days
+ * @param  {Array} schedule      List days
  * @return {Array} Result
  */
-module.exports = day => {
+module.exports = schedule => {
   try {
     let res = [];
 
-    for (let x = 0; x < day.length; x++) {
+    for (let x = 0; x < schedule.length; x++) {
       let prefix = '';
 
       switch (x) {
@@ -49,9 +47,9 @@ module.exports = day => {
           break;
       }
 
-      if (day[x]) {
-        for (let y = 0; y < day[x].hour.length; y++) {
-          const frame = day[x].hour[y].split('-');
+      if (schedule[x]) {
+        for (let y = 0; y < schedule[x].hour.length; y++) {
+          const frame = schedule[x].hour[y].split('-');
           const from = parseInt(frame[0]);
           const to = parseInt(frame[1]);
 
