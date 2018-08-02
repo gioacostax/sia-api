@@ -39,11 +39,9 @@ describe('SIA', () => {
       expect(res[0]).toBeDefined();
       expect(res[0]).toHaveProperty('code');
       expect(res[0]).toHaveProperty('master');
-      expect(res[0]).toHaveProperty('user');
       expect(res[0]).toHaveProperty('quota');
       expect(res[0]).toHaveProperty('free');
-      expect(res[0]).toHaveProperty('limits');
-      expect(res[0]).toHaveProperty('schedule');
+      expect(res[0]).toHaveProperty('week');
     });
   });
 
