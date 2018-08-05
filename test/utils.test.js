@@ -9,14 +9,14 @@ const sia = require('../src');
 
 describe('UTILS', () => {
   // Arreglo de horario personalizado dentro de un grupo
-  const day = [
-    null,
-    { place: ['--', '--'], hour: ['7-10', '18-20'] },
-    null,
-    { place: ['217-302'], hour: ['7-10'] },
-    null,
-    null,
-    null
+  const week = [
+    ['--'],
+    ['7-10', '18-20'],
+    ['--'],
+    ['7-10'],
+    ['--'],
+    ['--'],
+    ['--']
   ];
 
   const filter = ['M7', 'M8', 'M9', 'M18', 'M19', 'J7', 'J8', 'J9']; // Filtro personalizado
@@ -26,8 +26,8 @@ describe('UTILS', () => {
    * Verifica que la conversión del arreglo personalizado del horario
    * de un grupo a un arreglo del tipo filtro personalizado sea el correcto.
    */
-  test('Values of .parseSchedule()', () => {
-    expect(sia.utils.parseSchedule(day)).toEqual(filter);
+  test('.parseWeek()', () => {
+    expect(sia.utils.parseWeek(week)).toEqual(filter);
   });
 
   /*
@@ -35,7 +35,7 @@ describe('UTILS', () => {
    * dentro del filtro, así mismo, si no se encuentra verificar que la
    * respuesta sea falsa.
    */
-  test('Values of .validFilter()', () => {
+  test('.validFilter()', () => {
     expect(sia.utils.validFilter(['J9', 'M8'], filter)).toBeTruthy();
     expect(sia.utils.validFilter(['J11', 'M8'], filter)).toBeFalsy();
   });
@@ -44,7 +44,7 @@ describe('UTILS', () => {
    * Verifica que la conversión de un filtro original tenga los mismos
    * valores al filtro personalizado.
    */
-  test('Values of .parseParam()', () => {
+  test('.parseParam()', () => {
     expect(sia.utils.parseParam(param)).toEqual(filter);
   });
 
@@ -52,7 +52,7 @@ describe('UTILS', () => {
    * Verifica que la conversión de un filtro personalizado tenga los mismos
    * valores al filtro original.
    */
-  test('Values of .parseFilter()', () => {
+  test('.parseFilter()', () => {
     expect(sia.utils.parseFilter(filter)).toEqual(param);
   });
 });

@@ -1,8 +1,4 @@
-'use strict';
-
 /**
- * SIA-API
- *
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
@@ -10,12 +6,13 @@
  */
 
 /**
- * Parse filter: ['L10', 'M10', 'M11', 'M12' ...] to param: 'L:M10-13,14-17:C:J10-13,14-17:V:S:D'
+ * Transforma un filtro del tipo personalizado (['L10', 'M10', 'M11', 'M12' ...])
+ * a un filtro del tipo original ('L:M10-13,14-17:C:J10-13,14-17:V:S:D').
  *
- * @param  {Array} filter   Especial Filter
- * @return {String} result
+ * @param  {Array} filter
+ * @return {String}
  */
-module.exports = filter => {
+module.exports = (filter) => {
   try {
     const key = ['L', 'M', 'C', 'J', 'V', 'S', 'D'];
     let res = '';
@@ -41,7 +38,7 @@ module.exports = filter => {
             onFrame = true;
             frame.push(y);
           } else if (onFrame) {
-            total.push(`${frame[0]}-${parseInt(frame[frame.length - 1]) + 1}`);
+            total.push(`${frame[0]}-${parseInt(frame[frame.length - 1], 10) + 1}`);
             frame = [];
             onFrame = false;
           }
@@ -63,6 +60,6 @@ module.exports = filter => {
 
     return res.substring(0, res.length - 1);
   } catch (err) {
-    return null;
+    return '';
   }
 };

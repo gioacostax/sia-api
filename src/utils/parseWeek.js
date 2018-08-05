@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
@@ -8,16 +6,17 @@
  */
 
 /**
- * Parse array 'Group.Schedule' to ['L10', 'M10', 'M11', 'M12' ...]
+ * Transforma el horario de un objeto original a un filtro del tipo
+ * personalizado (['L10', 'M10', 'M11', 'M12' ...]).
  *
- * @param  {Array} schedule      List days
- * @return {Array} Result
+ * @param  {Array} week
+ * @return {Array}
  */
-module.exports = schedule => {
+module.exports = (week) => {
   try {
     let res = [];
 
-    for (let x = 0; x < schedule.length; x++) {
+    for (let x = 0; x < week.length; x++) {
       let prefix = '';
 
       switch (x) {
@@ -46,12 +45,11 @@ module.exports = schedule => {
           prefix = 'X';
           break;
       }
-
-      if (schedule[x]) {
-        for (let y = 0; y < schedule[x].hour.length; y++) {
-          const frame = schedule[x].hour[y].split('-');
-          const from = parseInt(frame[0]);
-          const to = parseInt(frame[1]);
+      if (week[x] !== '--') {
+        for (let y = 0; y < week[x].length; y++) {
+          const frame = week[x][y].split('-');
+          const from = parseInt(frame[0], 10);
+          const to = parseInt(frame[1], 10);
 
           const tmp = [];
 
@@ -66,6 +64,6 @@ module.exports = schedule => {
 
     return res;
   } catch (err) {
-    return null;
+    return [];
   }
 };

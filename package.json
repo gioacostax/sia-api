@@ -5,27 +5,21 @@
   "author": "Giorgio Acosta",
   "license": "MIT",
   "scripts": {
-    "test": "mocha",
-    "test:jest": "jest --watch"
+    "test": "jest",
+    "eslint": "eslint src"
   },
   "main": "src/index.js",
   "dependencies": {
-    "es6-promise": "^4.2.4",
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
     "eslint": "^5.2.0",
-    "eslint-config-gio": "^1.2.5",
-    "jest": "^23.4.2",
-    "mocha": "^5.2.0"
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "jest": "^23.4.2"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/gioacostax/sia-api.git"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testURL": "http://localhost"
   }
 }

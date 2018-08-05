@@ -1,8 +1,4 @@
-'use strict';
-
 /**
- * SIA-API
- *
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
@@ -10,11 +6,13 @@
  */
 
 /**
- * Compare two filters, if first is on second go next, else return false.
+ * Valida que todas las horas que se encuentran en el arreglo del
+ * tipo filtro personalizado (filter) se encuentren en el arreglo
+ * del tipo filtro personalizado (hours).
  *
- * @param  {Array} hours    Hours for search
- * @param  {Array} filter   Filter to search
- * @return {Boolean} True or False
+ * @param  {Array} hours
+ * @param  {Array} filter
+ * @return {Boolean}
  */
 module.exports = (hours, filter) => {
   try {
@@ -26,6 +24,6 @@ module.exports = (hours, filter) => {
 
     return true;
   } catch (err) {
-    return null;
+    return false;
   }
 };

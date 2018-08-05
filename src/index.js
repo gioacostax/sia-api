@@ -1,8 +1,4 @@
-'use strict';
-
 /**
- * SIA-API
- *
  * Copyright © 2015-2018 gioacostax. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
@@ -10,148 +6,44 @@
  */
 
 /**
-* Necessary modules
-*/
-const com = require('./_sia/_connect');
-const _utils = require('./utils');
-
-const defaultURL = 'https://siabog.unal.edu.co';
-
-exports.utils = _utils;
-
-/**
- * String real names
+ * Libreria 'fetch' para entornos NodeJS.
  *
- * @type {Object}
+ * El objetivo de esta librería es utilizar de la misma manera la función fetch
+ * tanto para entornos NodeJS como para navegores web (ya lo tienen incorporado).
  */
-exports.NAME = {
-  ama: 'Amazonia',
-  bog: 'Bogotá',
-  car: 'Caribe',
-  man: 'Manizales',
-  med: 'Medellín',
-  ori: 'Orinoquia',
-  pal: 'Palmira',
-  tum: 'Tumaco'
+require('isomorphic-fetch');
+
+const getGroups = require('./getGroups');
+const getSubjects = require('./getSubjects');
+const utils = require('./utils');
+
+module.exports = {
+  getGroups,
+  getSubjects,
+  utils
 };
 
 /**
- * String names of available levels
+ * Niveles de programa disponibles
  *
  * @type {Object}
  */
 exports.LEVEL = {
-  pre: 'PREGRADO',
-  pos: 'POSGRADO'
+  PRE: 'PREGRADO',
+  POS: 'POSGRADO'
 };
 
 /**
- * Subject types
+ * Tipologías de asignaturas disponibles
  *
  * @type {Object}
  */
 exports.TYPE = {
-  p: 'NIVELACIÓN',
-  b: 'FUNDAMENTACIÓN',
-  c: 'DISCIPLINAR',
-  l: 'LIBRE ELECCIÓN',
-  m: 'MULTIPLES',
-  o: 'OBLIGATORIO',
-  t: 'ELEGIBLE'
-};
-
-/**
-* Get Groups
-*
-* @param  {Number} code         Code of subject
-* @param  {Object} host         { host = defaultURL, eco, id }
-* @param  {Object} options      { plan, filter} (Optional)
-* @return  {Function} Promise
-*/
-exports.getGroups = (
-  code,
-  { host = defaultURL, eco, id } = {},
-  { plan = null, filter = [] } = {}
-) => {
-  return new Promise((resolve, reject) => {
-    com.getGroups(host, `[${code} , 0]`, { eco, id }, (res, err) => {
-      if (!err) {
-        const planFilter = [];
-
-        if (plan) {
-          for (let x = 0; x < res.length; x++) {
-            if (res[x].limits.length) {
-              for (let y = 0; y < res[x].limits.length; y++) {
-                if (res[x].limits[y].plan === plan) {
-                  if (filter.length) {
-                    if (_utils.validFilter(_utils.parseSchedule(res[x].schedule), filter)) {
-                      planFilter.push(res[x]);
-                    }
-                  } else {
-                    planFilter.push(res[x]);
-                  }
-                }
-              }
-            } else {
-              if (filter.length) {
-                if (_utils.validFilter(_utils.parseSchedule(res[x].schedule), filter)) {
-                  planFilter.push(res[x]);
-                }
-              } else {
-                planFilter.push(res[x]);
-              }
-            }
-          }
-          resolve(planFilter);
-        } else if (filter.length) {
-          for (let x = 0; x < res.length; x++) {
-            if (_utils.validFilter(_utils.parseSchedule(res[x].schedule), filter)) {
-              planFilter.push(res[x]);
-            }
-          }
-          resolve(planFilter);
-        }
-        resolve(res);
-      }
-      reject({ error: { name: err.name, code: err.code, message: err.message } });
-    });
-  });
-};
-
-/**
- * Get subjects
- *
- * @param  {String} search     Search key
- * @param  {Object} host        { host = defaultURL, eco, id }
- * @param  {Object} options     { filter, level, type, plan, noPag, noRes} (Optional)
- * @return {Function} Promise
- */
-exports.getSubjects = (
-  search,
-  { host = defaultURL, eco, id } = {},
-  { filter = [], level = '', type = '', plan = '', noPag = 1, noRes = 15 } = {}
-) => {
-  return new Promise((resolve, reject) => {
-    try {
-      const params = `[
-        '${search}',
-        '${level}',
-        '${type}',
-        '${level}',
-        '${plan}',
-        '${filter.length ? _utils.parseFilter(filter) : ''}',
-        ${noPag},
-        ${noRes}
-      ]`;
-
-      com.getSubjects(host, params, { eco, id }, (res, err) => {
-        if (!err) {
-          resolve(res);
-        }
-        reject({ error: { name: err.name, code: err.code, message: err.message } });
-      });
-    } catch (err) {
-      reject({ error: { name: err.name, code: err.code, message: err.message } });
-    }
-  });
+  P: 'NIVELACIÓN',
+  B: 'FUNDAMENTACIÓN',
+  C: 'DISCIPLINAR',
+  L: 'LIBRE ELECCIÓN',
+  M: 'MULTIPLES',
+  O: 'OBLIGATORIO',
+  T: 'ELEGIBLE'
 };
