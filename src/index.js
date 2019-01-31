@@ -17,18 +17,12 @@ const getGroups = require('./getGroups');
 const getSubjects = require('./getSubjects');
 const utils = require('./utils');
 
-module.exports = {
-  getGroups,
-  getSubjects,
-  utils
-};
-
 /**
  * Niveles de programa disponibles
  *
  * @type {Object}
  */
-exports.LEVEL = {
+const LEVEL = {
   PRE: 'PREGRADO',
   POS: 'POSGRADO'
 };
@@ -38,7 +32,7 @@ exports.LEVEL = {
  *
  * @type {Object}
  */
-exports.TYPE = {
+const TYPE = {
   P: 'NIVELACIÓN',
   B: 'FUNDAMENTACIÓN',
   C: 'DISCIPLINAR',
@@ -46,4 +40,29 @@ exports.TYPE = {
   M: 'MULTIPLES',
   O: 'OBLIGATORIO',
   T: 'ELEGIBLE'
+};
+
+/**
+ * Nombres de sedes
+ *
+ * @type {Object}
+ */
+const HEAD = {
+  ama: 'AMAZONIA',
+  bog: 'BOGOTÁ',
+  car: 'CARIBE',
+  man: 'MANIZALES',
+  med: 'MEDELLÍN',
+  ori: 'ORINOQUIA',
+  pal: 'PALMIRA',
+  tum: 'TUMACO'
+};
+
+module.exports = {
+  getGroups,
+  getSubjects,
+  utils,
+  LEVEL,
+  TYPE,
+  HEAD
 };
