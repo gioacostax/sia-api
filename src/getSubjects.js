@@ -110,13 +110,13 @@ module.exports = (
      *   "id_asignatura":"2016893"
      * }
      */
-    const subjects = json.result.asignaturas.list.map(subject => ({
+    const subjects = json.result.asignaturas ? json.result.asignaturas.list.map(subject => ({
       id: subject.id_asignatura || 0,
       code: subject.codigo || 0,
       name: subject.nombre || '[NO DISPONIBLE]',
       type: subject.tipologia || '-',
       credits: subject.creditos || 0
-    }));
+    })) : [];
 
     /**
      * El resultado será un objeto con 3 llaves, cantidad de asignaturas
